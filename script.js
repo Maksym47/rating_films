@@ -33,27 +33,27 @@ const personalMovieDB = {
 // personalMovieDB.movies[c] = d;
 
 
-for (let i = 0; i < 2; i++) {
-    let a = prompt('Один из последних просмотренных фильмов?', ''),
-        b = +prompt('На сколько оцените его?', '');
-    if (a && b || b == 0 && a.length <= 50) {
-        personalMovieDB.movies[a] = b;
-    } else {
-        i--;
-    }
-}
-
-// let i = 0;
-// while (i < 2) {
+// for (let i = 0; i < 2; i++) {
 //     let a = prompt('Один из последних просмотренных фильмов?', ''),
 //         b = +prompt('На сколько оцените его?', '');
-//         if (!a || !b || a.length > 50) {
-//                 // i--;
-//             } else {
-//                 personalMovieDB.movies[a] = b;
-//                 i++;
-//             }
+//     if (a && b || b == 0 && a.length <= 50) {
+//         personalMovieDB.movies[a] = b;
+//     } else {
+//         i--;
+//     }
 // }
+
+let i = 0;
+while (i < 2) {
+    let a = prompt('Один из последних просмотренных фильмов?', ''),
+        b = +prompt('На сколько оцените его?', '');
+        if (!a || !b || a.length > 50) {
+                // i--;
+            } else {
+                personalMovieDB.movies[a] = b;
+                i++;
+            }
+}
 
 // let i = 0;
 // do {
