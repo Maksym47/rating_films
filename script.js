@@ -61,12 +61,13 @@ const personalMovieDB = {
             let ans = prompt(`Ваш любимый жанр под номером ${i}`, '');
             if (ans === null || ans.length < 1) {
                 i--;
+                continue;
             }
             personalMovieDB.genres.push(ans);
         }
     
         personalMovieDB.genres.forEach((item, index) => {
-            console.log(`Любимый жанр #${index} - это ${item}`);
+            console.log(`Любимый жанр #${index + 1} - это ${item}`);
         });
     },
     toggleVisibleMyDB() {
