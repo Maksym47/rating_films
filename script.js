@@ -32,6 +32,7 @@ const personalMovieDB = {
 // personalMovieDB.movies[a] = b;
 // personalMovieDB.movies[c] = d;
 
+
 // for (let i = 0; i < 2; i++) {
 //     let a = prompt('Один из последних просмотренных фильмов?', ''),
 //         b = +prompt('На сколько оцените его?', '');
@@ -41,7 +42,6 @@ const personalMovieDB = {
 //         i--;
 //     }
 // }
-
 
 let i = 0;
 while (i < 2) {
