@@ -1,20 +1,22 @@
-/* Задание на урок:
+/* Задание на урок 4:
 
-1) Первую часть задания повторить по уроку
+1) У нас уже есть рабочее приложение, состоящее из отдельных функций. Представьте, что
+перед вами стоит задача переписать его так, чтобы все функции стали методами объекта personalMovieDB
+Такое случается в реальных продуктах при смене технологий или подхода к архитектуре программы
 
-2) Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции
-false - выводит в консоль главный объект программы
+2) Создать метод toggleVisibleMyDB, который при вызове будет проверять свойство privat. Если оно false - он
+переключает его в true, если true - переключает в false. Протестировать вместе с showMyDB.
 
-3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
-"Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
-genres
+3) В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
+Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
+при помощи метода forEach вывести в консоль сообщения в таком виде:
+"Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
 
-P.S. Функции вызывать не обязательно*/
+// Код возьмите из предыдущего домашнего задания
 
 'use strict';
 
 let numberOfFilms;
-start();
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -60,19 +62,39 @@ function showMyDB() {
     console.log(personalMovieDB);
     }
 }
+// 3) В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
+// Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
+// при помощи метода forEach вывести в консоль сообщения в таком виде:
+// "Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
 
 function writeYourGenres() {
     for (let i = 1; i <= 3; i++) {
-        personalMovieDB.genres.push(prompt(`Ваш любимый жанр под номером ${i}`, ''));
+        let ans = prompt(`Ваш любимый жанр под номером ${i}`, '');
+        if (ans === null || ans.length < 1) {
+            i--;
+            continue;
+        }
+        personalMovieDB.genres.push(ans);
     }
+
+    personalMovieDB.genres.forEach((item) => {
+        console.log(item);
+    });
 }
 
-// 3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
-// "Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
-// genres
+function toggleVisibleMyDB() {
+    if (personalMovieDB.privat === true) {
+        personalMovieDB.privat = false;
+    } else if (personalMovieDB.privat === false) {
+        personalMovieDB.privat = true;
+    } 
+}
 
-// rememberMyFilms();
-// detectPersonalLevel();
-showMyDB();
-writeYourGenres();
-console.log(personalMovieDB);
+personalMovieDB.toggleVisibleMyDB = toggleVisibleMyDB;
+personalMovieDB.start = start;
+personalMovieDB.rememberMyFilms = rememberMyFilms;
+personalMovieDB.detectPersonalLevel = detectPersonalLevel;
+personalMovieDB.showMyDB = showMyDB;
+personalMovieDB.writeYourGenres = writeYourGenres;
+
+personalMovieDB.writeYourGenres();
